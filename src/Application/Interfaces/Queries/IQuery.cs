@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace HMS.Core.Application.Interfaces.Queries
+namespace Application.Interfaces.Queries
 {
     public interface IQuery<out TResponse> : IRequest<TResponse>
     {
