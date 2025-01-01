@@ -9,12 +9,18 @@ namespace Infrastructure.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Permission> builder)
         {
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Name).HasMaxLength(100);
-            builder.HasMany<RolePermission>()
+
+            builder.Property(e => e.Name)
+                .HasMaxLength(100);
+
+            // RolePermissions relationship
+            builder.HasMany(e => e.RolePermissions)
                 .WithOne(e => e.Permission)
                 .HasForeignKey(e => e.PermissionId)
                 .IsRequired();
-            builder.HasMany<Permission>()
+
+            // Self-referencing ParentPermission relationship
+            builder.HasMany(e => e.ChildPermissions)
                 .WithOne(e => e.ParentPermission)
                 .HasForeignKey(e => e.ParentPermissionId)
                 .OnDelete(DeleteBehavior.Cascade);

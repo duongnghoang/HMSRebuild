@@ -9,10 +9,14 @@ namespace Infrastructure.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Role> builder)
         {
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Name).HasMaxLength(100);
-            builder.HasMany<RolePermission>()
+
+            builder.Property(e => e.Name)
+                .HasMaxLength(100);
+
+            // RolePermissions relationship
+            builder.HasMany(e => e.RolePermissions)
                 .WithOne(e => e.Role)
-                .HasForeignKey(e => e.RoleId)
+                .HasForeignKey(e => e.PermissionId)
                 .IsRequired();
         }
     }

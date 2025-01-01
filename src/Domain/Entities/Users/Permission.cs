@@ -8,10 +8,13 @@ namespace Domain.Entities.Users
         public string? Name { get; private set; }
         public string? Description { get; private set; }
         public bool IsActive { get; private set; }
-        public Guid ParentPermissionId { get; private set; }
+
+        // Self-referencing relationships
+        public Guid? ParentPermissionId { get; private set; }
         public virtual Permission? ParentPermission { get; private set; }
-        public virtual RolePermission? RolePermission { get; private set; }
         public virtual ICollection<Permission>? ChildPermissions { get; private set; }
+
+        // Many-to-many relationship with RolePermission
         public virtual ICollection<RolePermission>? RolePermissions { get; private set; }
     }
 }
