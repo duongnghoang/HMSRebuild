@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Authentication\" />
+    <Folder Include="Authentication\Queries\" />
     <Folder Include="Staffs\Commands\" />
   </ItemGroup>
 

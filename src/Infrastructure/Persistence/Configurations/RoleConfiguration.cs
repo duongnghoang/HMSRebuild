@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+#pragma warning disable CS8634 // The type cannot be used as type parameter in the generic type or method. Nullability of type argument doesn't match 'class' constraint.
+
 namespace Infrastructure.Persistence.Configurations
 {
     internal sealed class RoleConfiguration : IEntityTypeConfiguration<Role>
@@ -15,8 +17,8 @@ namespace Infrastructure.Persistence.Configurations
 
             // RolePermissions relationship
             builder.HasMany(e => e.RolePermissions)
-                .WithOne(e => e.Role)
-                .HasForeignKey(e => e.PermissionId)
+                .WithOne(e => e!.Role)
+                .HasForeignKey(e => e!.PermissionId)
                 .IsRequired();
         }
     }

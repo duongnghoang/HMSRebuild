@@ -8,6 +8,6 @@ namespace Domain.Entities.Users
         public string? Description { get; private set; }
         public bool IsActive { get; private set; }
 
-        public virtual ICollection<RolePermission?> RolePermissions { get; private set; }
+        public virtual ICollection<RolePermission>? RolePermissions { get; private set; }
     }
 }

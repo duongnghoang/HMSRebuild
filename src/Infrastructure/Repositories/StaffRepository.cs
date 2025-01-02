@@ -18,7 +18,7 @@ namespace Infrastructure.Repositories
 
         public Staff GetStaffById(Guid id)
         {
-            return _context.Set<Staff>().FirstOrDefault(x => x.Id == id);
+            return _context.Staffs.FirstOrDefault(x => x.Id == id);
         }
 
         public Staff GetStaffByEmail(string email)
