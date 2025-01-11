@@ -13,7 +13,7 @@
         public string District { get; private set; }
 
         public string Province { get; private set; }
-        
+
         public string Country { get; private set; }
 
         public string PostalCode { get; private set; }
