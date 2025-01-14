@@ -2,6 +2,7 @@
 using Domain.Entities.Users;
 using Infrastructure.Persistence;
 using Infrastructure.Repositories.Base;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
@@ -26,9 +27,9 @@ namespace Infrastructure.Repositories
             return _context.Staffs.FirstOrDefault(x => x.Email.Value == email);
         }
 
-        public Staff GetStaffByEmailAndPassword(string email, string password)
+        public async Task<Staff> GetStaffByEmailAndPassword(string email, string password)
         {
-            return _context.Staffs.FirstOrDefault(x => x.Email.Value == email && x.Password == password);
+            return await _context.Staffs.FirstOrDefaultAsync(x => x.Email.Value == email && x.Password == password);
         }
 
         public Staff AddStaff(Staff staff)

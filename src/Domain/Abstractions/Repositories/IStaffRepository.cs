@@ -10,7 +10,7 @@ namespace Domain.Abstractions.Repositories
 
         Staff GetStaffByEmail(string email);
 
-        Staff GetStaffByEmailAndPassword(string email, string password);
+        Task<Staff> GetStaffByEmailAndPassword(string email, string password);
 
         Staff AddStaff(Staff staff);
 

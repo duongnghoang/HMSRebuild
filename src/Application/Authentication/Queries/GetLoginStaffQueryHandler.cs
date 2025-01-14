@@ -1,14 +1,18 @@
 ﻿using Application.Interfaces.Queries;
+using Domain.Abstractions.Repositories;
 
 namespace Application.Authentication.Queries
 {
-    public record GetLoginStaffQueryResult();
+    public record GetLoginStaffQueryResult(string Token);
 
     public class GetLoginStaffQueryHandler : IQueryHandler<GetLoginStaffQuery, GetLoginStaffQueryResult>
     {
-        public Task<GetLoginStaffQueryResult> Handle(GetLoginStaffQuery request, CancellationToken cancellationToken)
+        private readonly IStaffRepository _staffRepository;
+
+        public async Task<GetLoginStaffQueryResult> Handle(GetLoginStaffQuery request,
+            CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var staff = await _staffRepository.GetStaffByEmailAndPassword(request.Email, request.Password);
         }
     }
 }

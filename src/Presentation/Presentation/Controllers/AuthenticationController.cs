@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Contracts.Authentication;
 
@@ -9,10 +10,12 @@ namespace WebApi.Controllers
     public class AuthenticationController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly IValidator _validator;
 
-        public AuthenticationController(IMediator mediator)
+        public AuthenticationController(IMediator mediator, IValidator validator)
         {
             _mediator = mediator;
+            _validator = validator;
         }
 
         [HttpGet]
