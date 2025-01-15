@@ -24,12 +24,12 @@ namespace Infrastructure.Repositories
 
         public Staff GetStaffByEmail(string email)
         {
-            return _context.Staffs.FirstOrDefault(x => x.Email.Value == email);
+            return _context.Staffs.FirstOrDefault(x => x.Email == email);
         }
 
         public async Task<Staff> GetStaffByEmailAndPassword(string email, string password)
         {
-            return await _context.Staffs.FirstOrDefaultAsync(x => x.Email.Value == email && x.Password == password);
+            return await _context.Staffs.FirstOrDefaultAsync(x => x.Email == email && x.Password == password);
         }
 
         public Staff AddStaff(Staff staff)

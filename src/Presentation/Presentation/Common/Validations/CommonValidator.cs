@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Presentation.Common.Validations
@@ -12,7 +13,7 @@ namespace Presentation.Common.Validations
             _serviceProvider = serviceProvider;
         }
 
-        public void Validate<T>(T instance)
+        public async Task<ValidationResult> ValidateAsync<T>(T instance)
         {
             // Resolve the FluentValidation validator for the type
             var validator = _serviceProvider.GetService<IValidator<T>>();
@@ -22,11 +23,8 @@ namespace Presentation.Common.Validations
             }
 
             // Execute FluentValidation
-            var result = validator.Validate(instance);
-            if (!result.IsValid)
-            {
-                throw new ValidationException(result.Errors);
-            }
+            var result = await validator.ValidateAsync(instance);
+            return result;
         }
     }
 }
