@@ -1,4 +1,4 @@
-﻿using Application.Authentication.Queries;
+﻿using Application.Authentication.Commands;
 using Mapster;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -29,10 +29,10 @@ namespace WebApi.Controllers
                 return BadRequest(validationResult);
             }
 
-            var loginQuery = request.Adapt<GetLoginStaffQuery>();
-            var result = await _mediator.Send(loginQuery);
+            var loginRequest = request.Adapt<LoginStaffCommand>();
+            var result = await _mediator.Send(loginRequest);
 
-            return Ok("Hello World");
+            return Ok(result);
         }
     }
 }
