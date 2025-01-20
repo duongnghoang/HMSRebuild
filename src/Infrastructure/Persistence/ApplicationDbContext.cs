@@ -7,14 +7,30 @@ namespace Infrastructure.Persistence
 {
     public class ApplicationDbContext : DbContext
     {
-        public virtual DbSet<Staff> Staffs => Set<Staff>();
-        public virtual DbSet<Role> Roles => Set<Role>();
-        public virtual DbSet<Permission> Permissions => Set<Permission>();
-        public virtual DbSet<RolePermission> RolePermissions => Set<RolePermission>();
+        private readonly string _connectionString;
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
+            IOptions<AppsettingsOption> appSettings)
+            : base(options)
         {
+            _connectionString = appSettings.Value.ConnectionString!.DefaultConnection;
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(_connectionString);
+            }
+        }
+
+        public virtual DbSet<Staff> Staffs => Set<Staff>();
+
+        public virtual DbSet<Role> Roles => Set<Role>();
+
+        public virtual DbSet<Permission> Permissions => Set<Permission>();
+
+        public virtual DbSet<RolePermission> RolePermissions => Set<RolePermission>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
