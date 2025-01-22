@@ -6,10 +6,12 @@ namespace Application.Authentication.Commands
     public class LoginStaffCommandHandler : ICommandHandler<LoginStaffCommand, string>
     {
         private readonly IStaffRepository _staffRepository;
+        private readonly IJwtService _jwtService;
 
-        public LoginStaffCommandHandler(IStaffRepository staffRepository)
+        public LoginStaffCommandHandler(IStaffRepository staffRepository, IJwtService jwtService)
         {
             _staffRepository = staffRepository;
+            _jwtService = jwtService;
         }
 
         public async Task<string> Handle(LoginStaffCommand request,
@@ -21,7 +23,7 @@ namespace Application.Authentication.Commands
                 return new string("No staff");
             }
 
-            return new string(staff.Name);
+            return _jwtService.GenerateToken(staff);
         }
     }
 }

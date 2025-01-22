@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
-using FluentValidation;
+﻿using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
 using Presentation.Common.Validations;
+using System.Reflection;
 
 namespace Presentation
 {
@@ -11,6 +11,7 @@ namespace Presentation
         {
             services.AddValidatorsFromAssembly(Assembly.GetAssembly(typeof(DependencyInjection)));
             services.AddScoped<ICommonValidator, CommonValidator>();
+
             return services;
         }
     }

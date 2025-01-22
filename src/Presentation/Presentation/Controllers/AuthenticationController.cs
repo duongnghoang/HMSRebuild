@@ -1,6 +1,7 @@
 ﻿using Application.Authentication.Commands;
 using Mapster;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Common.Validations;
 using Presentation.Contracts.Authentication;
@@ -33,6 +34,13 @@ namespace Presentation.Controllers
             var result = await _mediator.Send(loginRequest);
 
             return Ok(result);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> Test()
+        {
+            return Ok();
         }
     }
 }

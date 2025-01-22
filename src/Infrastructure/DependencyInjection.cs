@@ -1,7 +1,9 @@
-﻿using Domain.Abstractions.Repositories;
+﻿using Application.Interfaces;
+using Domain.Abstractions.Repositories;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Settings;
 using Infrastructure.Repositories;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -54,7 +56,7 @@ namespace Infrastructure
             });
 
             services.AddScoped<IStaffRepository, StaffRepository>();
-
+            services.AddScoped<IJwtService, JwtService>();
             return services;
         }
     }
