@@ -1,16 +1,14 @@
-﻿using System.Text;
-using Domain.Abstractions;
-using Domain.Abstractions.Repositories;
+﻿using Domain.Abstractions.Repositories;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Settings;
 using Infrastructure.Repositories;
-using Infrastructure.Repositories.Base;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Infrastructure
 {
@@ -19,14 +17,19 @@ namespace Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services,
             IConfiguration configuration)
         {
-            // Configure AppSettingOptions
-            services.Configure<AppsettingsOption>(configuration);
+            // Configure AppsettingOptions
+            services.Configure<ConnectionStrings>(configuration.GetSection("ConnectionStrings"));
+            services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
+            services.Configure<Loggings>(configuration.GetSection("Loggings"));
 
             // Configure DbContext
             services.AddDbContext<ApplicationDbContext>((serviceProvider, options) =>
             {
-                var appSettings = serviceProvider.GetRequiredService<IOptions<AppsettingsOption>>();
-                options.UseSqlServer(appSettings.Value.ConnectionString!.DefaultConnection);
+                var connectionStrings = serviceProvider.GetRequiredService<IOptions<ConnectionStrings>>().Value;
+                if (!options.IsConfigured)
+                {
+                    options.UseSqlServer(connectionStrings.DefaultConnection);
+                }
             });
 
             // Add JWT Authentication if needed
@@ -48,17 +51,6 @@ namespace Infrastructure
                     IssuerSigningKey = new SymmetricSecurityKey(
                         Encoding.UTF8.GetBytes(jwtSettings.Secret))
                 };
-            });
-            services.ConfigureOptions<AppsettingsOptionSetup>();
-
-            // Then configure and register the DbContext
-            services.AddDbContext<ApplicationDbContext>((serviceProvider, options) =>
-            {
-                var appsettings = serviceProvider.GetRequiredService<IOptions<AppsettingsOption>>().Value;
-                if (!options.IsConfigured)
-                {
-                    options.UseSqlServer(appsettings.ConnectionString?.DefaultConnection);
-                }
             });
 
             services.AddScoped<IStaffRepository, StaffRepository>();

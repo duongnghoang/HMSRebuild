@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Application.Interfaces.Commands
+namespace Application.Interfaces
 {
     public interface ICommand<out TResponse> : IRequest<TResponse>
     {

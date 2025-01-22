@@ -1,4 +1,4 @@
-﻿using Application.Interfaces.Commands;
+﻿using Application.Interfaces;
 
 namespace Application.Authentication.Commands
 {

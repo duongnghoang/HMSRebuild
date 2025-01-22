@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Infrastructure.Persistence.Migrations
+namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -29,7 +29,7 @@ namespace Infrastructure.Persistence.Migrations
                         column: x => x.ParentPermissionId,
                         principalTable: "Permissions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -52,8 +52,7 @@ namespace Infrastructure.Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PermissionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PermissionId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    PermissionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -62,17 +61,6 @@ namespace Infrastructure.Persistence.Migrations
                         name: "FK_RolePermissions_Permissions_PermissionId",
                         column: x => x.PermissionId,
                         principalTable: "Permissions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_RolePermissions_Permissions_PermissionId1",
-                        column: x => x.PermissionId1,
-                        principalTable: "Permissions",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_RolePermissions_Roles_PermissionId",
-                        column: x => x.PermissionId,
-                        principalTable: "Roles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -126,11 +114,6 @@ namespace Infrastructure.Persistence.Migrations
                 name: "IX_RolePermissions_PermissionId",
                 table: "RolePermissions",
                 column: "PermissionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RolePermissions_PermissionId1",
-                table: "RolePermissions",
-                column: "PermissionId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RolePermissions_RoleId",

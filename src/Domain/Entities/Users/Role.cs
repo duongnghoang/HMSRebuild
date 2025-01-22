@@ -7,7 +7,7 @@ namespace Domain.Entities.Users
         public string? Name { get; private set; }
         public string? Description { get; private set; }
         public bool IsActive { get; private set; }
-
+        public virtual ICollection<Staff>? Staffs { get; private set; }
         public virtual ICollection<RolePermission>? RolePermissions { get; private set; }
     }
 }

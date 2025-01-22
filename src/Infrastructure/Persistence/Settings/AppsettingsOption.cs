@@ -1,16 +1,5 @@
 ﻿namespace Infrastructure.Persistence.Settings
 {
-    public class AppsettingsOption
-    {
-        public ConnectionStrings? ConnectionString { get; set; }
-
-        public JwtSettings? JwtSetting { get; set; }
-
-        public Loggings? Logging { get; set; }
-
-        public string? AllowedHosts { get; set; }
-    }
-
     public class Loggings
     {
         public Dictionary<string, string>? LogLevel { get; set; }

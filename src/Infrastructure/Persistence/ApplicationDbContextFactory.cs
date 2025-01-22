@@ -14,20 +14,20 @@ namespace Infrastructure.Persistence
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
-                .AddJsonFile(
-                    $"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development"}.json",
-                    true)
                 .Build();
 
-            // Create options
-            var appSettings = new AppsettingsOption();
-            configuration.Bind(appSettings);
+            // Get connection string
+            var connectionStrings = new ConnectionStrings();
+            configuration.GetSection("ConnectionStrings").Bind(connectionStrings);
 
+            // Set up DbContextOptions
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-            optionsBuilder.UseSqlServer(appSettings.ConnectionString!.DefaultConnection);
+            optionsBuilder.UseSqlServer(connectionStrings.DefaultConnection);
 
-            return new ApplicationDbContext(optionsBuilder.Options,
-                Options.Create(appSettings));
+            // Create Options instance
+            IOptions<ConnectionStrings> options = Options.Create(connectionStrings);
+
+            return new ApplicationDbContext(optionsBuilder.Options, options);
         }
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Presentation.Common.Validations;
 using Presentation.Contracts.Authentication;
 
-namespace WebApi.Controllers
+namespace Presentation.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

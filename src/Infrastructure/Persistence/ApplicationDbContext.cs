@@ -10,10 +10,10 @@ namespace Infrastructure.Persistence
         private readonly string _connectionString;
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
-            IOptions<AppsettingsOption> appSettings)
+            IOptions<ConnectionStrings> connectionStrings)
             : base(options)
         {
-            _connectionString = appSettings.Value.ConnectionString!.DefaultConnection;
+            _connectionString = connectionStrings.Value!.DefaultConnection;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

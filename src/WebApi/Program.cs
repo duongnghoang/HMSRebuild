@@ -4,7 +4,6 @@ using Presentation;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Configuration.SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json");
 // Add services to the container.
 
 builder.Services.AddControllers();

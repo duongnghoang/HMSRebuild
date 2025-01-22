@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Infrastructure.Persistence.Migrations
+namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250101105849_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250122103231_update_staff_config")]
+    partial class update_staff_config
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -81,17 +81,12 @@ namespace Infrastructure.Persistence.Migrations
                     b.Property<Guid>("PermissionId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("PermissionId1")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("RoleId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("PermissionId");
-
-                    b.HasIndex("PermissionId1");
 
                     b.HasIndex("RoleId");
 
@@ -138,9 +133,6 @@ namespace Infrastructure.Persistence.Migrations
                     b.Property<Guid>("RoleId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("RoleId1")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
@@ -148,8 +140,6 @@ namespace Infrastructure.Persistence.Migrations
                         .HasFilter("[Email] IS NOT NULL");
 
                     b.HasIndex("RoleId");
-
-                    b.HasIndex("RoleId1");
 
                     b.ToTable("Staffs");
                 });
@@ -159,31 +149,21 @@ namespace Infrastructure.Persistence.Migrations
                     b.HasOne("Domain.Entities.Users.Permission", "ParentPermission")
                         .WithMany("ChildPermissions")
                         .HasForeignKey("ParentPermissionId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("ParentPermission");
                 });
 
             modelBuilder.Entity("Domain.Entities.Users.RolePermission", b =>
                 {
-                    b.HasOne("Domain.Entities.Users.Permission", null)
-                        .WithMany()
+                    b.HasOne("Domain.Entities.Users.Permission", "Permission")
+                        .WithMany("RolePermissions")
                         .HasForeignKey("PermissionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Users.Role", "Role")
                         .WithMany("RolePermissions")
-                        .HasForeignKey("PermissionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Users.Permission", "Permission")
-                        .WithMany("RolePermissions")
-                        .HasForeignKey("PermissionId1");
-
-                    b.HasOne("Domain.Entities.Users.Role", null)
-                        .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -195,15 +175,11 @@ namespace Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Users.Staff", b =>
                 {
-                    b.HasOne("Domain.Entities.Users.Role", null)
-                        .WithMany()
+                    b.HasOne("Domain.Entities.Users.Role", "Role")
+                        .WithMany("Staffs")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Domain.Entities.Users.Role", "Role")
-                        .WithMany()
-                        .HasForeignKey("RoleId1");
 
                     b.Navigation("Role");
                 });
@@ -218,6 +194,8 @@ namespace Infrastructure.Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.Users.Role", b =>
                 {
                     b.Navigation("RolePermissions");
+
+                    b.Navigation("Staffs");
                 });
 #pragma warning restore 612, 618
         }

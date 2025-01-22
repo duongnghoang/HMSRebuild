@@ -1,4 +1,4 @@
-﻿using Application.Interfaces.Commands;
+﻿using Application.Interfaces;
 using Domain.Abstractions.Repositories;
 
 namespace Application.Authentication.Commands
