@@ -1,5 +1,5 @@
-﻿using Domain.DomainCommon;
-using Domain.DomainCommon.Interface;
+﻿using Domain.DomainCommon.Interface;
+using Domain.Entities.Common;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

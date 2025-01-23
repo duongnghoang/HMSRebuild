@@ -1,7 +1,7 @@
 ﻿using Domain.DomainCommon.Interface;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Domain.DomainCommon
+namespace Domain.Entities.Common
 {
     public class TimeStampTracking : CreatedModifiedTracking, ISoftDelete
     {

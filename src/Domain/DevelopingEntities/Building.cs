@@ -1,6 +1,6 @@
 ﻿using Domain.DomainCommon.Interface;
-using Domain.DomainCommon;
 using System.ComponentModel.DataAnnotations;
+using Domain.Entities.Common;
 
 namespace Domain.Entity
 {
