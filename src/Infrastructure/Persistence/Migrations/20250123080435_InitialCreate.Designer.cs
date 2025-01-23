@@ -4,16 +4,19 @@ using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Infrastructure.Migrations
+namespace Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250123080435_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,21 +74,15 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Users.RolePermission", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid>("RoleId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("PermissionId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
+                    b.HasKey("RoleId", "PermissionId");
 
                     b.HasIndex("PermissionId");
-
-                    b.HasIndex("RoleId");
 
                     b.ToTable("RolePermissions");
                 });
@@ -153,21 +150,17 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Users.RolePermission", b =>
                 {
-                    b.HasOne("Domain.Entities.Users.Permission", "Permission")
-                        .WithMany("RolePermissions")
+                    b.HasOne("Domain.Entities.Users.Permission", null)
+                        .WithMany()
                         .HasForeignKey("PermissionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.Users.Role", "Role")
-                        .WithMany("RolePermissions")
+                    b.HasOne("Domain.Entities.Users.Role", null)
+                        .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Permission");
-
-                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("Domain.Entities.Users.Staff", b =>
@@ -184,14 +177,10 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.Users.Permission", b =>
                 {
                     b.Navigation("ChildPermissions");
-
-                    b.Navigation("RolePermissions");
                 });
 
             modelBuilder.Entity("Domain.Entities.Users.Role", b =>
                 {
-                    b.Navigation("RolePermissions");
-
                     b.Navigation("Staffs");
                 });
 #pragma warning restore 612, 618

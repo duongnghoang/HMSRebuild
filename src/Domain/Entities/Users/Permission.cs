@@ -13,8 +13,5 @@ namespace Domain.Entities.Users
         public Guid? ParentPermissionId { get; private set; }
         public virtual Permission? ParentPermission { get; private set; }
         public virtual ICollection<Permission>? ChildPermissions { get; private set; }
-
-        // Many-to-many relationship with RolePermission
-        public virtual ICollection<RolePermission>? RolePermissions { get; private set; }
     }
 }

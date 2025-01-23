@@ -23,7 +23,7 @@ namespace Application.Authentication.Commands
                 return new string("No staff");
             }
 
-            return _jwtService.GenerateToken(staff);
+            return _jwtService.GenerateTokenAsync(staff);
         }
     }
 }

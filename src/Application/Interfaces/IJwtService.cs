@@ -4,6 +4,6 @@ namespace Application.Interfaces
 {
     public interface IJwtService
     {
-        string GenerateToken(Staff staff);
+        Task<string> GenerateTokenAsync(Staff staff);
     }
 }

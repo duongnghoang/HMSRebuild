@@ -1,9 +1,9 @@
 ﻿using Application.Interfaces;
 using Domain.Abstractions.Repositories;
+using Infrastructure.Authorization;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Settings;
 using Infrastructure.Repositories;
-using Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Infrastructure
 {
@@ -54,6 +55,10 @@ namespace Infrastructure
                         Encoding.UTF8.GetBytes(jwtSettings.Secret))
                 };
             });
+
+            services.AddAuthorization();
+            services.AddSingleton<IAuthorizationHandler, PermissionAuthorizationHandler>();
+            services.AddSingleton<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
 
             services.AddScoped<IStaffRepository, StaffRepository>();
             services.AddScoped<IJwtService, JwtService>();

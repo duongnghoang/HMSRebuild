@@ -13,12 +13,6 @@ namespace Infrastructure.Persistence.Configurations
             builder.Property(e => e.Name)
                 .HasMaxLength(100);
 
-            // RolePermissions relationship
-            builder.HasMany(e => e.RolePermissions)
-                .WithOne(e => e.Permission)
-                .HasForeignKey(e => e.PermissionId)
-                .IsRequired();
-
             // Self-referencing ParentPermission relationship
             builder.HasMany(e => e.ChildPermissions)
                 .WithOne(e => e.ParentPermission)

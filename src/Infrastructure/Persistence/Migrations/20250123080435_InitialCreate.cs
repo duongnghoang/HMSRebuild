@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Infrastructure.Migrations
+namespace Infrastructure.Persistence.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -50,13 +50,12 @@ namespace Infrastructure.Migrations
                 name: "RolePermissions",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PermissionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RolePermissions", x => x.Id);
+                    table.PrimaryKey("PK_RolePermissions", x => new { x.RoleId, x.PermissionId });
                     table.ForeignKey(
                         name: "FK_RolePermissions_Permissions_PermissionId",
                         column: x => x.PermissionId,
@@ -86,8 +85,7 @@ namespace Infrastructure.Migrations
                     Gender = table.Column<bool>(type: "bit", nullable: false),
                     PasswordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     PasswordHash = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    RoleId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -98,11 +96,6 @@ namespace Infrastructure.Migrations
                         principalTable: "Roles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Staffs_Roles_RoleId1",
-                        column: x => x.RoleId1,
-                        principalTable: "Roles",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -116,11 +109,6 @@ namespace Infrastructure.Migrations
                 column: "PermissionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RolePermissions_RoleId",
-                table: "RolePermissions",
-                column: "RoleId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Staffs_Email",
                 table: "Staffs",
                 column: "Email",
@@ -131,11 +119,6 @@ namespace Infrastructure.Migrations
                 name: "IX_Staffs_RoleId",
                 table: "Staffs",
                 column: "RoleId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Staffs_RoleId1",
-                table: "Staffs",
-                column: "RoleId1");
         }
 
         /// <inheritdoc />
