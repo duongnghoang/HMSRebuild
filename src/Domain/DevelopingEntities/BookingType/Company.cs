@@ -17,6 +17,7 @@ public class Company : IResponse<int>
     public string? TaxCode { get; set; }
     public string? Description { get; set; }
     public int SourceId { get; set; }
+    public bool IsActived { get; set; }
     // Contact Person Information
     public string? ContactPersonName { get; set; }
     public string? ContactPersonMobile { get; set; }

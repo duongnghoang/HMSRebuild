@@ -12,7 +12,7 @@ public class DayFee : IResponse<int>
     [Key]
     public int Id { get; set; }
     public int FeePolicyId { get; set; }
-    public bool IsInUsed { get; set; } = true;
+    public bool IsActived { get; set; }
     public string CheckInAt { get; set; }
     public string CheckOutAt { get; set; }
     public decimal Fee { get; set; } = 0;

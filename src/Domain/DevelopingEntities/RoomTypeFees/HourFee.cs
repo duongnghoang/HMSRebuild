@@ -9,7 +9,7 @@ public class HourFee : IResponse<int>
     [Key]
     public int Id { get; set; }
     public int FeePolicyId { get; set; }
-    public bool IsInUsed { get; set; } = false;
+    public bool IsActived { get; set; }
     public virtual ICollection<HourFeePrice>? HourFeePrices { get; set; } = new List<HourFeePrice>();
 
     [ForeignKey(nameof(FeePolicyId))]
