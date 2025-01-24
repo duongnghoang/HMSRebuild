@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Domain.Entity.RoomFee;
+namespace Domain.DevelopingEntities.RoomTypeFees;
 
 /// <summary>
 /// Phí phạt khi checkin/checkout sớm/muộn

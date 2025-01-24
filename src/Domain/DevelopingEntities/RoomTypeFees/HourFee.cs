@@ -1,9 +1,8 @@
 ﻿using Domain.DomainCommon.Interface;
-using System.Collections;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Domain.Entity.RoomFee;
+namespace Domain.DevelopingEntities.RoomTypeFees;
 
 public class HourFee : IResponse<int>
 {

@@ -1,10 +1,9 @@
-﻿using Domain.DevelopingEntities;
-using Domain.DomainCommon.Interface;
+﻿using Domain.DomainCommon.Interface;
 using Domain.Entities.Common;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Domain.Entity.RoomFee;
+namespace Domain.DevelopingEntities.RoomTypeFees;
 
 public class FeePolicy : TimeStampTracking, IResponse<int>
 {

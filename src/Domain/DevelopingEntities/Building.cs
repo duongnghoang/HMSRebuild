@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Domain.Entities.Common;
 
-namespace Domain.Entity
+namespace Domain.DevelopingEntities
 {
     public class Building : TimeStampTracking, IResponse<int>
     {
@@ -14,7 +14,7 @@ namespace Domain.Entity
         public float? PositionX { get; set; }
         public float? PositionY { get; set; }
         // Kích thước hiển thị
-        public float? Width { get; set; } 
+        public float? Width { get; set; }
         public float? Height { get; set; }
 
     }

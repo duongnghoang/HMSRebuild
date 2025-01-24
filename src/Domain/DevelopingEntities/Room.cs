@@ -1,11 +1,10 @@
-﻿using Domain.DevelopingEntities;
-using Domain.DomainCommon.Enumeration.Definition;
+﻿using Domain.DomainCommon.Enumeration.Definition;
 using Domain.DomainCommon.Interface;
 using Domain.Entities.Common;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Domain.Entity;
+namespace Domain.DevelopingEntities;
 
 public class Room : TimeStampTracking, IResponse<int>
 {

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Domain.Entity.RoomFee;
+namespace Domain.DevelopingEntities.RoomTypeFees;
 
 /// <summary>
 /// Quy tắc giá khi checkin/checkout ban ngày
@@ -26,7 +26,6 @@ public class DayFee : IResponse<int>
     /// <summary>
     /// check in ngoài khung giờ quy định sẽ tính thêm phí phạt
     /// </summary>
-    public virtual ICollection<PunishFee> PunishFees { get; set; }
-
+    //public virtual ICollection<PunishFee> PunishFees { get; set; }
 
 }

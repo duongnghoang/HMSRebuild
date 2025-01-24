@@ -2,7 +2,7 @@
 using Domain.Entities.Common;
 using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Entity;
+namespace Domain.DevelopingEntities;
 
 /// <summary>
 /// Hình thức thanh toán như Tiền mặt, Chuyển khoản
