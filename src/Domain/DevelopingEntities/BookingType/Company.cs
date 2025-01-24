@@ -1,13 +1,8 @@
 ﻿using Domain.DomainCommon.Interface;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Domain.DevelopingEntities;
+namespace Domain.DevelopingEntities.BookingType;
 
 public class Company : IResponse<int>
 {
@@ -16,9 +11,9 @@ public class Company : IResponse<int>
     public string Code { get; set; }
     public string Name { get; set; }
     public string? ContactNumber { get; set; }
-    public string? Email {  get; set; }
+    public string? Email { get; set; }
     public string? MobilePhoneNumber { get; set; }
-    public string? FaxNumber {  get; set; }
+    public string? FaxNumber { get; set; }
     public string? TaxCode { get; set; }
     public string? Description { get; set; }
     public int SourceId { get; set; }

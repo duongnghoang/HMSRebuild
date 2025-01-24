@@ -1,7 +1,7 @@
 ﻿using Domain.DomainCommon.Interface;
 using System.ComponentModel.DataAnnotations;
 
-namespace Domain.DevelopingEntities;
+namespace Domain.DevelopingEntities.BookingType;
 
 public class Source : IResponse<int>
 {

@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.DevelopingEntities;
 
-public class staff : TimeStampTracking, IResponse<string>
+public class Staff : TimeStampTracking, IResponse<string>
 {
     [Key]
     public string Id { get; set; } = Helper.DefaultStringPrimaryKey;
