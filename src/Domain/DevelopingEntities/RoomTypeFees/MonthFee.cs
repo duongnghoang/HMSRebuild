@@ -11,7 +11,7 @@ public class MonthFee : IResponse<int>
     public decimal Fee { get; set; } = 0;
     public bool WhenToCalculate { get; set; } = false;
     public int FeePolicyId { get; set; }
-    public bool IsActived { get; set; }
+    public bool IsActive { get; set; }
 
     [ForeignKey(nameof(FeePolicyId))]
     public virtual FeePolicy? FeePolicy { get; set; }

@@ -29,7 +29,7 @@ public class Service : TimeStampTracking, IResponse<int>
     /// Không được thêm vào hóa đơn: khi tích chọn thì dịch vụ này sẽ không xuất hiện trong dịch vụ phòng cũng như điểm bán hàng
     /// </summary>
     public bool DoNotAddToInvoice { get; set; }
-    public bool IsActived { get; set; }
+    public bool IsActive { get; set; }
 
     [ForeignKey(nameof(ServiceGroupId))]
     public virtual ServiceGroup? ServiceGroup { get; set; }

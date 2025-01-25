@@ -11,7 +11,7 @@ public class FeePolicy : TimeStampTracking, IResponse<int>
     public int Id { get; set; }
     public string Name { get; set; }
     public int RoomTypeId { get; set; }
-    public bool IsActived { get; set; }
+    public bool IsActive { get; set; }
     public virtual DayFee? DayFee { get; set; }
     public virtual HourFee? HourFee { get; set; }
     public virtual MonthFee? MonthFee { get; set; }
