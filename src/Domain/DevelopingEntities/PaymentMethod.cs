@@ -11,5 +11,5 @@ public class PaymentMethod : TimeStampTracking, IResponse<int>
 {
     [Key]
     public int Id { get; set; }
-    public DomainCommon.Enumeration.Definition.PaymentMethod Name { get; set; } = DomainCommon.Enumeration.Definition.PaymentMethod.Cash;
+    public Entities.Common.Enumeration.Definition.PaymentMethod Name { get; set; } = Entities.Common.Enumeration.Definition.PaymentMethod.Cash;
 }

@@ -1,4 +1,4 @@
-﻿namespace Domain.DomainCommon.Enumeration.Definition
+﻿namespace Domain.Entities.Common.Enumeration.Definition
 {
     /// <summary>
     /// mapping with permision CODE

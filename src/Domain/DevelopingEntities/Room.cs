@@ -1,6 +1,6 @@
-﻿using Domain.DomainCommon.Enumeration.Definition;
-using Domain.DomainCommon.Interface;
+﻿using Domain.DomainCommon.Interface;
 using Domain.Entities.Common;
+using Domain.Entities.Common.Enumeration.Definition;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
