@@ -29,18 +29,18 @@ public static class LogTypeConversion
            LogType.None => LogTypeCode.None,
            LogType.Repair => LogTypeCode.Repair,
            LogType.ChangeCurrency => LogTypeCode.ChangeCurrency,
-            _ => throw new NotImplementedException("Invalid Reservation Status enum")
+            _ => throw new NotImplementedException("Invalid Log Type enum")
         };
     }
 
-    public static LogType BookingStatusToEnum(string logType)
+    public static LogType LogTypeToEnum(string logType)
     {
         return logType switch
         {
             LogTypeCode.None => LogType.None,
             LogTypeCode.Repair => LogType.Repair,
             LogTypeCode.ChangeCurrency => LogType.ChangeCurrency,
-            _ => throw new ArgumentException("Invalid Reservation Status string", nameof(logType))
+            _ => throw new ArgumentException("Invalid Log Type string", nameof(logType))
         };
     }
 }

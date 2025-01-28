@@ -11,9 +11,12 @@ public class Log : TimeStampTracking, IResponse<int>
     [Key]
     public int Id { get; set; }
     public string? StaffId { get; set; }
+    public int? RoomId { get; set; }
     public string? Detail {  get; set; }
     public LogType LogType { get; set; }
 
     [ForeignKey(nameof(StaffId))]
     public Staff? Staff { get; set; }
+    [ForeignKey(nameof(RoomId))]
+    public Room? Room { get; set; }
 }
