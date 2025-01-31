@@ -15,5 +15,5 @@ public class TransactionCategory : TimeStampTracking, IResponse<int>
     public bool IsActive { get; set; }
     public int TransactionGroupId { get; set; }
     [ForeignKey(nameof(TransactionGroupId))]
-    public TransactionGroup TransactionGroup { get; set; }
+    public virtual TransactionGroup? TransactionGroup { get; set; }
 }

@@ -16,7 +16,7 @@ public class Log : TimeStampTracking, IResponse<int>
     public LogType LogType { get; set; }
 
     [ForeignKey(nameof(StaffId))]
-    public Staff? Staff { get; set; }
+    public virtual Staff? Staff { get; set; }
     [ForeignKey(nameof(RoomId))]
-    public Room? Room { get; set; }
+    public virtual Room? Room { get; set; }
 }

@@ -15,7 +15,7 @@ public class RoomEquipment : IResponse<int>
     public string Note { get; set; }
 
     [ForeignKey(nameof(RoomId))]
-    public Room? Room { get; set; }
+    public virtual Room? Room { get; set; }
     [ForeignKey(nameof(EquipmentId))]
-    public Equipment? Equipment { get; set; }
+    public virtual Equipment? Equipment { get; set; }
 }

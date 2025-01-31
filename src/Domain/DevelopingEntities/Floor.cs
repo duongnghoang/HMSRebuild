@@ -13,5 +13,5 @@ public class Floor : TimeStampTracking, IResponse<int>
     public string Name { get; set; }
 
     [ForeignKey(nameof(BuildingId))]
-    public Building? Building { get; set; }
+    public virtual Building? Building { get; set; }
 }
