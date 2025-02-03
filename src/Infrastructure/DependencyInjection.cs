@@ -62,6 +62,7 @@ namespace Infrastructure
 
             services.AddScoped<IStaffRepository, StaffRepository>();
             services.AddScoped<IJwtService, JwtService>();
+            services.AddScoped<IPermissionService, PermissionService>();
             return services;
         }
     }

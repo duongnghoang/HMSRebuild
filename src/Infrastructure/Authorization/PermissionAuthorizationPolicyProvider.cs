@@ -20,7 +20,7 @@ namespace Infrastructure.Authorization
             }
 
             return new AuthorizationPolicyBuilder()
-                .AddRequirements(new PermissionRequirement(policyName))
+                .AddRequirements(new PermissionRequirement(policyName.Split(",")))
                 .Build();
         }
     }

@@ -4,11 +4,11 @@ namespace Infrastructure.Authorization
 {
     public class PermissionRequirement : IAuthorizationRequirement
     {
-        public PermissionRequirement(string permission)
+        public PermissionRequirement(params string[] permissions)
         {
-            Permission = permission;
+            Permissions = permissions;
         }
 
-        public string Permission { get; }
+        public string[] Permissions { get; }
     }
 }

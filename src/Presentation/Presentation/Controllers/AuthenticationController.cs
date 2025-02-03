@@ -1,4 +1,7 @@
 ﻿using Application.Authentication.Login;
+using Application.Authentication.Register;
+using Domain.Shared.Permissions;
+using Infrastructure.Authorization;
 using Mapster;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -8,7 +11,7 @@ using Presentation.Contracts.Authentication;
 
 namespace Presentation.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/authentication/")]
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
@@ -21,7 +24,7 @@ namespace Presentation.Controllers
             _validator = validator;
         }
 
-        [HttpPost]
+        [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
             var validationResult = await _validator.ValidateAsync(request);
@@ -36,7 +39,21 @@ namespace Presentation.Controllers
             return Ok(result);
         }
 
-        [Authorize]
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterStaffRequest request)
+        {
+            var validationResult = await _validator.ValidateAsync(request);
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult);
+            }
+
+            var registerRequest = request.Adapt<RegisterStaffCommand>();
+            var result = await _mediator.Send(registerRequest);
+            return Ok(result);
+        }
+
+        [HasPermission(PermissionConstant.AddServices, PermissionConstant.Checkin)]
         [HttpGet]
         public async Task<IActionResult> Test()
         {
