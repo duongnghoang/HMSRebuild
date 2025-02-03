@@ -1,4 +1,5 @@
 ﻿using Domain.Entities.Users;
+using Domain.Shared.Permissions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

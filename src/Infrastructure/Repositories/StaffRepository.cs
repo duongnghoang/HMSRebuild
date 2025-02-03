@@ -3,6 +3,9 @@ using Domain.Entities.Users;
 using Infrastructure.Persistence;
 using Infrastructure.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
+using System.Text;
+using Domain.Utilities;
 
 namespace Infrastructure.Repositories
 {
@@ -12,38 +15,22 @@ namespace Infrastructure.Repositories
         {
         }
 
-        public List<Staff> GetListOfStaff()
+        public async Task<Staff> LoginAsync(string email, string password)
         {
-            return _context.Staffs.ToList();
-        }
+            var staff = await _context.Staffs.FirstOrDefaultAsync(s => s.Email == email);
 
-        public Staff GetStaffById(Guid id)
-        {
-            return _context.Staffs.FirstOrDefault(x => x.Id == id);
-        }
+            if (staff == null || !PasswordHasher.VerifyPassword(password, staff.PasswordHash, staff.PasswordSalt))
+            {
+                throw new InvalidOperationException("Invalid email or password.");
+            }
 
-        public Staff GetStaffByEmail(string email)
-        {
-            return _context.Staffs.FirstOrDefault(x => x.Email == email);
-        }
-
-        public async Task<Staff> GetStaffByEmailAndPassword(string email, string password)
-        {
-            return await _context.Staffs.FirstOrDefaultAsync(x => x.Email == email && x.Password == password);
-        }
-
-        public Staff AddStaff(Staff staff)
-        {
-            _context.Staffs.Add(staff);
-            _context.SaveChanges();
             return staff;
         }
 
-        public Staff UpdateStaff(Staff staff)
+        public async Task AddAsync(Staff staff)
         {
-            _context.Staffs.Update(staff);
-            _context.SaveChanges();
-            return staff;
+            await _context.Staffs.AddAsync(staff);
+            await _context.SaveChangesAsync();
         }
     }
 }

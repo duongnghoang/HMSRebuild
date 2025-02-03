@@ -1,4 +1,4 @@
-﻿using Application.Authentication.Commands;
+﻿using Application.Authentication.Login;
 using Mapster;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;

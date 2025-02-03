@@ -4,10 +4,10 @@ namespace Domain.Entities.Users
 {
     public class Role : BaseEntity
     {
-        public string? Name { get; private set; }
-        public string? Description { get; private set; }
-        public bool IsActive { get; private set; }
-        public virtual ICollection<Staff>? Staffs { get; private set; }
-        public virtual ICollection<Permission>? Permissions { get; private set; }
+        public string? Name { get; set; }
+        public string? Description { get; set; }
+        public bool IsActive { get; set; }
+        public virtual ICollection<Staff>? Staffs { get; set; }
+        public virtual ICollection<Permission>? Permissions { get; set; }
     }
 }

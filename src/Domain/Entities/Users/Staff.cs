@@ -1,19 +1,16 @@
 ﻿using Domain.BaseObjects;
-using Domain.Entities.Common.EmailObject;
 
 namespace Domain.Entities.Users
 {
     public class Staff : BaseEntity
     {
-        public string? Name { get; private set; }
+        public string? Name { get; set; }
 
-        public Guid RoleId { get; private set; }
+        public Guid? RoleId { get; set; }
 
-        public string? Email { get; private set; }
+        public string? Email { get; set; }
 
-        public string? Password { get; private set; }
-
-        public string? PhoneNumber { get; private set; }
+        public string? PhoneNumber { get; set; }
 
         public DateTime? DateOfBirth { get; set; }
 
@@ -25,8 +22,8 @@ namespace Domain.Entities.Users
 
         public byte[]? PasswordHash { get; set; }
 
-        public bool IsActive { get; private set; }
+        public bool IsActive { get; set; }
 
-        public virtual Role? Role { get; private set; }
+        public virtual Role? Role { get; set; }
     }
 }

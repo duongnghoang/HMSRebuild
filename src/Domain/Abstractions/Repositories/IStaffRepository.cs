@@ -4,16 +4,8 @@ namespace Domain.Abstractions.Repositories
 {
     public interface IStaffRepository
     {
-        List<Staff> GetListOfStaff();
+        Task<Staff> LoginAsync(string email, string password);
 
-        Staff GetStaffById(Guid id);
-
-        Staff GetStaffByEmail(string email);
-
-        Task<Staff> GetStaffByEmailAndPassword(string email, string password);
-
-        Staff AddStaff(Staff staff);
-
-        Staff UpdateStaff(Staff staff);
+        Task AddAsync(Staff staff);
     }
 }
