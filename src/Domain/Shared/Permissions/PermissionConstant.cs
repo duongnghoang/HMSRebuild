@@ -1,5 +1,8 @@
 ﻿namespace Domain.Shared.Permissions
 {
+    /// <summary>
+    /// Defining all the permissions in the system for authorization
+    /// </summary>
     public static class PermissionConstant
     {
         //public const string Booking = "BOOKING";

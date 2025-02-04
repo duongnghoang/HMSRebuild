@@ -1,4 +1,4 @@
-﻿using Domain.BaseObjects;
+﻿using Domain.Abstractions.BaseObjects;
 
 namespace Domain.Entities.Users
 {

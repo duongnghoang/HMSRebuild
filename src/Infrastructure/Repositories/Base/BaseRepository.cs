@@ -3,7 +3,7 @@ using Infrastructure.Persistence;
 
 namespace Infrastructure.Repositories.Base
 {
-    public class BaseRepository : IBaseRepository
+    public abstract class BaseRepository : IBaseRepository
     {
         protected readonly ApplicationDbContext _context;
 

@@ -1,7 +1,9 @@
 ﻿using Application.Interfaces;
 using Domain.Abstractions.Repositories;
 using Domain.Entities.Users;
+using Domain.Shared;
 using Domain.Utilities;
+using Mapster;
 
 namespace Application.Authentication.Register
 {
@@ -14,27 +16,20 @@ namespace Application.Authentication.Register
             _staffRepository = staffRepository;
         }
 
-        public async Task<Guid> Handle(RegisterStaffCommand request, CancellationToken cancellationToken)
+        public async Task<Result<Guid>> Handle(RegisterStaffCommand request, CancellationToken cancellationToken)
         {
             // Hash the password
-            var (hash, salt) = PasswordHasher.HashPassword(request.Password);
+            var (hash, salt) = PasswordHasher.HashPassword(request.Password!);
 
             // Create the staff entity
-            var staff = new Staff
-            {
-                Name = request.Name,
-                Email = request.Email,
-                PhoneNumber = request.PhoneNumber,
-                RoleId = request.RoleId,
-                PasswordHash = hash,
-                PasswordSalt = salt,
-                IsActive = true
-            };
+            var staff = request.Adapt<Staff>();
+            staff.PasswordHash = hash;
+            staff.PasswordSalt = salt;
 
             // Save to database
             await _staffRepository.AddAsync(staff);
 
-            return staff.Id;
+            return Result.Success(staff.Id);
         }
     }
 }

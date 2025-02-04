@@ -1,10 +1,9 @@
 ﻿using Application.Authentication.Login;
 using Application.Authentication.Register;
 using Domain.Shared.Permissions;
-using Infrastructure.Authorization;
+using Infrastructure.Services.Authorization;
 using Mapster;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Common.Validations;
 using Presentation.Contracts.Authentication;
@@ -55,7 +54,7 @@ namespace Presentation.Controllers
 
         [HasPermission(PermissionConstant.AddServices, PermissionConstant.Checkin)]
         [HttpGet]
-        public async Task<IActionResult> Test()
+        public IActionResult Test()
         {
             return Ok();
         }

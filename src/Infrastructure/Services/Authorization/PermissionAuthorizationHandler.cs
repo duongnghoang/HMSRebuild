@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace Infrastructure.Authorization
+namespace Infrastructure.Services.Authorization
 {
     public class PermissionAuthorizationHandler : AuthorizationHandler<PermissionRequirement>
     {

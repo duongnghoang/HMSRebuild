@@ -5,5 +5,7 @@ namespace Application.Interfaces
     public interface IJwtService
     {
         Task<string> GenerateTokenAsync(Staff staff);
+
+        string DecryptJwt(string encryptedToken);
     }
 }

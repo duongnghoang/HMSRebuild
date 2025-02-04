@@ -1,8 +1,6 @@
-﻿using Domain.Entities.Users;
-using Domain.Shared.Permissions;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 
-namespace Infrastructure.Authorization
+namespace Infrastructure.Services.Authorization
 {
     public class HasPermissionAttribute : AuthorizeAttribute
     {

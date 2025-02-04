@@ -3,9 +3,6 @@ using Domain.Entities.Users;
 using Infrastructure.Persistence;
 using Infrastructure.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography;
-using System.Text;
-using Domain.Utilities;
 
 namespace Infrastructure.Repositories
 {
@@ -15,15 +12,9 @@ namespace Infrastructure.Repositories
         {
         }
 
-        public async Task<Staff> LoginAsync(string email, string password)
+        public async Task<Staff?> LoginAsync(string email, string password)
         {
             var staff = await _context.Staffs.FirstOrDefaultAsync(s => s.Email == email);
-
-            if (staff == null || !PasswordHasher.VerifyPassword(password, staff.PasswordHash, staff.PasswordSalt))
-            {
-                throw new InvalidOperationException("Invalid email or password.");
-            }
-
             return staff;
         }
 

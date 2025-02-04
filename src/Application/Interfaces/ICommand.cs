@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using Domain.Shared;
+using MediatR;
 
 namespace Application.Interfaces
 {
-    public interface ICommand<out TResponse> : IRequest<TResponse>
-    {
-    }
+    public interface ICommand : IRequest<Result>;
+
+    public interface ICommand<TResponse> : IRequest<Result<TResponse>>;
 }

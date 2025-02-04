@@ -22,4 +22,10 @@
     {
         public string DefaultConnection { get; set; } = string.Empty;
     }
+
+    public class AesEncryptionSettings
+    {
+        public string? Key { get; set; }
+        public string? IV { get; set; }
+    }
 }

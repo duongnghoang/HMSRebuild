@@ -29,9 +29,4 @@
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\Base\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>

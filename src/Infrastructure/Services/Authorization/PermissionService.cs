@@ -2,7 +2,7 @@
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Authorization
+namespace Infrastructure.Services.Authorization
 {
     public class PermissionService : IPermissionService
     {

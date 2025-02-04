@@ -1,7 +1,7 @@
-﻿namespace Domain.BaseObjects
+﻿namespace Domain.Abstractions.BaseObjects
 {
     /// <summary>
-    ///     Base entity class
+    /// Base entity class
     /// </summary>
     public abstract class BaseEntity
     {
@@ -15,7 +15,7 @@
         }
 
         /// <summary>
-        ///     Global unique identifier
+        /// Global unique identifier
         /// </summary>
         public Guid Id { get; protected set; } = Guid.NewGuid();
     }

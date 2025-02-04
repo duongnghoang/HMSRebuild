@@ -1,17 +1,17 @@
 ﻿using Application.Interfaces;
 using Domain.Abstractions.Repositories;
-using Infrastructure.Authorization;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Settings;
 using Infrastructure.Repositories;
+using Infrastructure.Services.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Infrastructure
 {
@@ -24,6 +24,7 @@ namespace Infrastructure
             services.Configure<ConnectionStrings>(configuration.GetSection("ConnectionStrings"));
             services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
             services.Configure<Loggings>(configuration.GetSection("Loggings"));
+            services.Configure<AesEncryptionSettings>(configuration.GetSection("AesEncryption"));
 
             // Configure DbContext
             services.AddDbContext<ApplicationDbContext>((serviceProvider, options) =>
@@ -35,7 +36,7 @@ namespace Infrastructure
                 }
             });
 
-            // Add JWT Authentication if needed
+            // Add JWT Authentication
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -56,13 +57,16 @@ namespace Infrastructure
                 };
             });
 
+            //Add Authorization services to the DI container
             services.AddAuthorization();
             services.AddSingleton<IAuthorizationHandler, PermissionAuthorizationHandler>();
             services.AddSingleton<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
-
-            services.AddScoped<IStaffRepository, StaffRepository>();
             services.AddScoped<IJwtService, JwtService>();
             services.AddScoped<IPermissionService, PermissionService>();
+
+            // Register Repositories
+            services.AddScoped<IStaffRepository, StaffRepository>();
+
             return services;
         }
     }

@@ -1,10 +1,12 @@
 ﻿using Application.Interfaces;
 using Domain.Abstractions.Repositories;
 using Domain.Entities.Users;
+using Domain.Shared;
+using Domain.Utilities;
 
 namespace Application.Authentication.Login
 {
-    public sealed class LoginStaffCommandHandler : ICommandHandler<LoginStaffCommand, string>
+    public sealed class LoginStaffCommandHandler : ICommandHandler<LoginStaffCommand>
     {
         private readonly IStaffRepository _staffRepository;
         private readonly IJwtService _jwtService;
@@ -15,16 +17,18 @@ namespace Application.Authentication.Login
             _jwtService = jwtService;
         }
 
-        public async Task<string> Handle(LoginStaffCommand request,
+        public async Task<Result> Handle(LoginStaffCommand request,
             CancellationToken cancellationToken)
         {
             var staff = await _staffRepository.LoginAsync(request.Email, request.Password);
-            if (staff == null)
+            if (staff == null ||
+                !PasswordHasher.VerifyPassword(request.Password, staff.PasswordHash!, staff.PasswordSalt!))
             {
-                return new string("No staff");
+                return Result.Failure(AuthenticationErrors.LoginValidation);
             }
 
-            return await _jwtService.GenerateTokenAsync(staff);
+            string token = await _jwtService.GenerateTokenAsync(staff);
+            return Result.Success(token);
         }
     }
 }

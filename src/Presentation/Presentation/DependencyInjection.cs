@@ -1,4 +1,6 @@
-﻿using FluentValidation;
+﻿using Application.Interfaces;
+using FluentValidation;
+using Infrastructure.Services.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using Presentation.Common.Validations;
 using System.Reflection;
@@ -11,7 +13,7 @@ namespace Presentation
         {
             services.AddValidatorsFromAssembly(Assembly.GetAssembly(typeof(DependencyInjection)));
             services.AddScoped<ICommonValidator, CommonValidator>();
-
+            services.AddScoped<IJwtService, JwtService>();
             return services;
         }
     }
