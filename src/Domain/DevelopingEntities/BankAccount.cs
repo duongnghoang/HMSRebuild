@@ -1,4 +1,4 @@
-﻿using Domain.DomainCommon.Interface;
+﻿using Domain.Entities.Common.Interface;
 using System.ComponentModel.DataAnnotations;
 
 namespace Domain.DevelopingEntities;

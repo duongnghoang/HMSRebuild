@@ -1,4 +1,4 @@
-﻿namespace Domain.DomainCommon.Interface
+﻿namespace Domain.Entities.Common.Interface
 {
     public interface IResponse<TPrimaryKey>
     {

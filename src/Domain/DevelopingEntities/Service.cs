@@ -1,7 +1,7 @@
-﻿using Domain.DomainCommon.Interface;
-using Domain.Entities.Common;
+﻿using Domain.Entities.Common;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Domain.Entities.Common.Interface;
 
 namespace Domain.DevelopingEntities;
 
