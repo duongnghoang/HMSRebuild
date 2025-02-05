@@ -1,9 +1,8 @@
-﻿using Domain.Abstractions;
-using Infrastructure.Persistence;
+﻿using Infrastructure.Persistence;
 
 namespace Infrastructure.Repositories.Base
 {
-    public abstract class BaseRepository : IBaseRepository
+    public abstract class BaseRepository
     {
         protected readonly ApplicationDbContext _context;
 
