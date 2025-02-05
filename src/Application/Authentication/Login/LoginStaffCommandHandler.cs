@@ -6,7 +6,7 @@ using Domain.Utilities;
 
 namespace Application.Authentication.Login
 {
-    public sealed class LoginStaffCommandHandler : ICommandHandler<LoginStaffCommand>
+    internal sealed class LoginStaffCommandHandler : ICommandHandler<LoginStaffCommand>
     {
         private readonly IStaffRepository _staffRepository;
         private readonly IJwtService _jwtService;
