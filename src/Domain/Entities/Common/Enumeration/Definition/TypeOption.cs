@@ -14,7 +14,6 @@
 
     public static class TypeOptionConversion
     {
-        // Converts TypeOption enum to its string translation
         public static string TypeOptionToString(this TypeOption status)
         {
             return status switch
