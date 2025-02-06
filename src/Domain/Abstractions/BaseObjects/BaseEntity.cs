@@ -17,6 +17,7 @@
         /// <summary>
         /// Global unique identifier
         /// </summary>
+
         public Guid Id { get; protected set; } = Guid.NewGuid();
     }
 }

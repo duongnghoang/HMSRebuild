@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Infrastructure.Persistence.Interceptors;
 
 namespace Infrastructure
 {
@@ -26,13 +27,17 @@ namespace Infrastructure
             services.Configure<Loggings>(configuration.GetSection("Loggings"));
             services.Configure<AesEncryptionSettings>(configuration.GetSection("AesEncryption"));
 
+            services.AddSingleton<UpdateAuditableEntitiesInterceptor>();
+
             // Configure DbContext
             services.AddDbContext<ApplicationDbContext>((serviceProvider, options) =>
             {
                 var connectionStrings = serviceProvider.GetRequiredService<IOptions<ConnectionStrings>>().Value;
+                var auditableInterceptor = serviceProvider.GetRequiredService<UpdateAuditableEntitiesInterceptor>();
                 if (!options.IsConfigured)
                 {
-                    options.UseSqlServer(connectionStrings.DefaultConnection);
+                    options.UseSqlServer(connectionStrings.DefaultConnection)
+                        .AddInterceptors(auditableInterceptor);
                 }
             });
 
