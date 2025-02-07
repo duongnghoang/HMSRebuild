@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistence.Configurations.FeePolicies
 {
-    public class FeePolicyConfiguration : IEntityTypeConfiguration<FeePolicy>
+    internal sealed class FeePolicyConfiguration : IEntityTypeConfiguration<FeePolicy>
     {
         public void Configure(EntityTypeBuilder<FeePolicy> builder)
         {

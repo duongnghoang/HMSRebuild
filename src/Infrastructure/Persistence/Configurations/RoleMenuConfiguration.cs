@@ -2,17 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Persistence.Data.Configurations;
-
-internal sealed class RoleMenuConfiguration : IEntityTypeConfiguration<RoleMenu>
+namespace Infrastructure.Persistence.Configurations
 {
-    public void Configure(EntityTypeBuilder<RoleMenu> builder)
+    internal sealed class RoleMenuConfiguration : IEntityTypeConfiguration<RoleMenu>
     {
-        builder
-            .HasKey(rm => new
+        public void Configure(EntityTypeBuilder<RoleMenu> builder)
+        {
+            builder.HasKey(rm => new
             {
                 rm.RoleId,
                 rm.MenuId
             });
+        }
     }
 }
