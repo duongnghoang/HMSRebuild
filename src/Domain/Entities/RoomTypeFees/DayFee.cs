@@ -8,7 +8,7 @@ namespace Domain.Entities.RoomTypeFees
     /// </summary>
     public class DayFee : BaseEntity
     {
-        public int FeePolicyId { get; set; }
+        public Guid FeePolicyId { get; set; }
         public bool IsActive { get; set; }
         public string CheckInAt { get; set; }
         public string CheckOutAt { get; set; }

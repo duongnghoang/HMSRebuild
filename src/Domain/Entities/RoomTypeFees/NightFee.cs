@@ -8,7 +8,7 @@ namespace Domain.Entities.RoomTypeFees
         public string CheckIn { get; set; }
         public string CheckOut { get; set; }
         public decimal Fee { get; set; } = 0;
-        public int FeePolicyId { get; set; }
+        public Guid FeePolicyId { get; set; }
         public bool IsActive { get; set; }
 
         [ForeignKey(nameof(FeePolicyId))]

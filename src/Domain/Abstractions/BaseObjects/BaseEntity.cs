@@ -1,4 +1,6 @@
-﻿namespace Domain.Abstractions.BaseObjects
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Domain.Abstractions.BaseObjects
 {
     /// <summary>
     /// Base entity class
@@ -17,7 +19,7 @@
         /// <summary>
         /// Global unique identifier
         /// </summary>
-
+        [Key]
         public Guid Id { get; protected set; } = Guid.NewGuid();
     }
 }

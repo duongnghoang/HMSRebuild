@@ -18,6 +18,11 @@ namespace Infrastructure.Persistence.Configurations
                 .WithMany()
                 .UsingEntity<RolePermission>();
 
+            // RolePermissions relationship
+            builder.HasMany(e => e.Menus)
+                .WithMany()
+                .UsingEntity<RoleMenu>();
+
             builder.HasMany(e => e.Staffs)
                 .WithOne(x => x.Role);
         }

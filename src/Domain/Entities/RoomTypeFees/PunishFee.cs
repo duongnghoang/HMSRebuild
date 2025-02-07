@@ -8,8 +8,8 @@ namespace Domain.Entities.RoomTypeFees
     /// </summary>
     public class PunishFee : BaseEntity
     {
-        public int? DayFeeId { get; set; }
-        public int? NightFeeId { get; set; }
+        public Guid? DayFeeId { get; set; }
+        public Guid? NightFeeId { get; set; }
 
         public string NumOfHour { get; set; }
         public decimal Fee { get; set; }

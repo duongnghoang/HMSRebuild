@@ -9,5 +9,6 @@ namespace Domain.Entities.Users
         public bool IsActive { get; set; }
         public virtual ICollection<Staff>? Staffs { get; set; }
         public virtual ICollection<Permission>? Permissions { get; set; }
+        public virtual ICollection<Menu>? Menus { get; set; }
     }
 }

@@ -5,7 +5,7 @@ namespace Domain.Entities.RoomTypeFees
 {
     public class HourFee : BaseEntity
     {
-        public int FeePolicyId { get; set; }
+        public Guid FeePolicyId { get; set; }
         public bool IsActive { get; set; }
         public virtual ICollection<HourFeePrice>? HourFeePrices { get; set; } = new List<HourFeePrice>();
 
