@@ -9,9 +9,9 @@ namespace Domain.Entities.RoomTypeFees
     public class DayFee : BaseEntity
     {
         public Guid FeePolicyId { get; set; }
-        public bool IsActive { get; set; }
-        public string CheckInAt { get; set; }
-        public string CheckOutAt { get; set; }
+        public bool IsActive { get; set; } = true;
+        public TimeSpan CheckInAt { get; set; } = new TimeSpan(14, 0, 0);
+        public TimeSpan CheckOutAt { get; set; } = new TimeSpan(12, 0, 0);
         public decimal Fee { get; set; } = 0;
         public decimal? AdultAdditionalFee { get; set; }
         public decimal? ChildAdditionalFee { get; set; }

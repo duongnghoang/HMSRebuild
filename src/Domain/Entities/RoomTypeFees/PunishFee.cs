@@ -11,7 +11,7 @@ namespace Domain.Entities.RoomTypeFees
         public Guid? DayFeeId { get; set; }
         public Guid? NightFeeId { get; set; }
 
-        public string NumOfHour { get; set; }
+        public TimeSpan NumOfHour { get; set; }
         public decimal Fee { get; set; }
         public bool IsCheckInEarlyOrCheckOutLate { get; set; }
 

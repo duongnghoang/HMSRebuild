@@ -5,7 +5,7 @@ namespace Domain.Entities.RoomTypeFees
 {
     public class HourFeePrice : BaseEntity
     {
-        public string Hour { get; set; }
+        public TimeSpan Hour { get; set; }
         public decimal Price { get; set; }
         public Guid HourFeeId { get; set; }
 

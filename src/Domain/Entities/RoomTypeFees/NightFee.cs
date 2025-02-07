@@ -5,8 +5,8 @@ namespace Domain.Entities.RoomTypeFees
 {
     public class NightFee : BaseEntity
     {
-        public string CheckIn { get; set; }
-        public string CheckOut { get; set; }
+        public TimeSpan CheckIn { get; set; } = new TimeSpan(21, 0, 0);
+        public TimeSpan CheckOut { get; set; } = new TimeSpan(12, 0, 0);
         public decimal Fee { get; set; } = 0;
         public Guid FeePolicyId { get; set; }
         public bool IsActive { get; set; }

@@ -1,5 +1,6 @@
 ﻿using Domain.Abstractions.BaseObjects;
 using Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories.Base
 {
@@ -23,6 +24,8 @@ namespace Infrastructure.Repositories.Base
             if (entity is ISoftDelete softDeletableEntity)
             {
                 softDeletableEntity.DeletedAt = DateTime.UtcNow;
+                var entityEntry = _context.Set<TEntity>().Attach(entity);
+                entityEntry.State = EntityState.Modified;
                 _context.Set<TEntity>().Update(entity);
             }
             else
