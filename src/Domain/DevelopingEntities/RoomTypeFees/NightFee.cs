@@ -8,8 +8,8 @@ public class NightFee : IResponse<int>
 {
     [Key]
     public int Id { get; set; }
-    public string CheckIn { get; set; }
-    public string CheckOut { get; set; }
+    public TimeSpan CheckIn { get; set; }
+    public TimeSpan CheckOut { get; set; }
     public decimal Fee { get; set; } = 0;
     public int FeePolicyId { get; set; }
     public bool IsActive { get; set; }
