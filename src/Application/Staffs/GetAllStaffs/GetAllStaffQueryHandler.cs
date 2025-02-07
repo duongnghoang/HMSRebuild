@@ -22,5 +22,8 @@ namespace Application.Staffs.GetAllStaffs
 
     public class GetAllStaffQueryResult
     {
+        public string Name { get; set; }
+        public string Email { get; set; }
+
     }
 }

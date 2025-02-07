@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
-    internal sealed class StaffRepository : BaseRepository, IStaffRepository
+    internal sealed class StaffRepository : BaseRepository<Staff>, IStaffRepository
     {
         public StaffRepository(ApplicationDbContext context) : base(context)
         {

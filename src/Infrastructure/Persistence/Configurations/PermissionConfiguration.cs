@@ -18,7 +18,7 @@ namespace Infrastructure.Persistence.Configurations
             builder.HasMany(e => e.ChildPermissions)
                 .WithOne(e => e.ParentPermission)
                 .HasForeignKey(e => e.ParentPermissionId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
