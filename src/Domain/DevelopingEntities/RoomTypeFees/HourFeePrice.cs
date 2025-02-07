@@ -8,7 +8,7 @@ namespace Domain.DevelopingEntities.RoomTypeFees
     {
         [Key]
         public int Id { get; set; }
-        public string Hour { get; set; }
+        public TimeSpan Hour { get; set; }
         public decimal Price { get; set; }
         public int HourFeeId { get; set; }
         [ForeignKey(nameof(HourFeeId))]

@@ -2,7 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace Domain.DevelopingEntities;
-
+/// <summary>
+/// 
+/// </summary>
 public class BankAccount : IResponse<int>
 {
     [Key]

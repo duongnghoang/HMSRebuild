@@ -13,8 +13,8 @@ public class DayFee : IResponse<int>
     public int Id { get; set; }
     public int FeePolicyId { get; set; }
     public bool IsActive { get; set; }
-    public string CheckInAt { get; set; }
-    public string CheckOutAt { get; set; }
+    public TimeSpan CheckInAt { get; set; }
+    public TimeSpan CheckOutAt { get; set; }
     public decimal Fee { get; set; } = 0;
     public decimal? AdultAdditionalFee { get; set; }
     public decimal? ChildAdditionalFee { get; set; }

@@ -14,7 +14,7 @@ public class PunishFee : IResponse<int>
     public int? DayFeeId { get; set; }
     public int? NightFeeId { get; set; }
 
-    public string NumOfHour { get; set; }
+    public TimeSpan NumOfHour { get; set; }
     public decimal Fee { get; set; }
     public bool IsCheckInEarlyOrCheckOutLate { get; set; }
 

@@ -12,9 +12,9 @@ public class TimeConfig : IResponse<int>
     /// </summary>
     public string TimeZone { get; set; } = "UTC";
     public int RoundMinutes { get; set; }
-    public required string DayCheckInTime { get; set; }
-    public required string DayCheckOutTime { get; set; }
-    public required string NightCheckInTime { get; set; }
-    public required string NightCheckOutTime { get; set; }
+    public required TimeSpan DayCheckInTime { get; set; }
+    public required TimeSpan DayCheckOutTime { get; set; }
+    public required TimeSpan NightCheckInTime { get; set; }
+    public required TimeSpan NightCheckOutTime { get; set; }
 
 }
