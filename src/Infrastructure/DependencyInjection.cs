@@ -12,7 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Domain.Abstractions.BaseObjects;
 using Infrastructure.Persistence.Interceptors;
+using Infrastructure.Repositories.Base;
 
 namespace Infrastructure
 {
@@ -70,6 +72,7 @@ namespace Infrastructure
             services.AddScoped<IPermissionService, PermissionService>();
 
             // Register Repositories
+            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IStaffRepository, StaffRepository>();
 
             return services;

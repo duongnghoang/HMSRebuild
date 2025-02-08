@@ -9,9 +9,9 @@ namespace Domain.Entities.RoomTypeFees
         /// </summary>
         public string TimeZone { get; set; } = "UTC";
         public int RoundMinutes { get; set; }
-        public required TimeSpan DayCheckInTime { get; set; }
-        public required TimeSpan DayCheckOutTime { get; set; }
-        public required TimeSpan NightCheckInTime { get; set; }
-        public required TimeSpan NightCheckOutTime { get; set; }
+        public TimeSpan DayCheckInTime { get; set; }
+        public TimeSpan DayCheckOutTime { get; set; }
+        public TimeSpan NightCheckInTime { get; set; }
+        public TimeSpan NightCheckOutTime { get; set; }
     }
 }
