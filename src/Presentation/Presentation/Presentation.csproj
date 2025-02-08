@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <Folder Include="Common\Validations\" />
+    <Folder Include="Contracts\RoomTypeFees\" />
   </ItemGroup>
 
 </Project>

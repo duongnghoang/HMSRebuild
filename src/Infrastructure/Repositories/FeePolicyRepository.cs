@@ -2,6 +2,7 @@
 using Domain.Entities.RoomTypeFees;
 using Infrastructure.Persistence;
 using Infrastructure.Repositories.Base;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
@@ -9,6 +10,17 @@ namespace Infrastructure.Repositories
     {
         public FeePolicyRepository(ApplicationDbContext context) : base(context)
         {
+        }
+
+        public async Task<bool> IsFeePolicyNameExist(string name)
+        {
+            bool isExist = await _context.Set<FeePolicy>().AnyAsync(x => x.Name == name);
+            if (isExist)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public async Task AddAsync(FeePolicy feePolicy)
