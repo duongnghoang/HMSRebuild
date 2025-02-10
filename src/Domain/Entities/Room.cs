@@ -13,6 +13,9 @@ public class Room : TimeStampTracking, IResponse<int>
     public string RoomName { get; set; }
     public int FloorId { get; set; }
     public int RoomTypeId { get; set; }
+    /// <summary>
+    /// Vị trí sắp xếp cho một phòng
+    /// </summary>
     public int Order { get; set; } = 0;
     public RoomStatus RoomStatus { get; set; }
 
